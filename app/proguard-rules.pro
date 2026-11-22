@@ -1,0 +1,3 @@
+-keep class com.wled.tvaudiosync.service.WledAudioSyncService { *; }
+-keep class com.wled.tvaudiosync.receiver.BootReceiver { *; }
+-keepclassmembers enum com.wled.tvaudiosync.data.** { *; }

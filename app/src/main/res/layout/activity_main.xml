@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F17"
+    android:orientation="vertical"
+    android:padding="40dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="#F8FAFC"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Připraveno k odesílání WLED UDP Audio Sync"
+        android:textColor="#94A3B8"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="24dp">
+
+            <Button
+                android:id="@+id/btnToggleStream"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/tv_focus_card"
+                android:focusable="true"
+                android:nextFocusDown="@+id/btnSourceVisualizer"
+                android:nextFocusRight="@+id/editTargetIp"
+                android:text="Spustit streamování do WLED"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <com.wled.tvaudiosync.ui.SpectrumMeterView
+                android:id="@+id/spectrumMeter"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Zdroj interního zvuku"
+                android:textColor="#CBD5E1"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSourceVisualizer"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_focus_card"
+                    android:focusable="true"
+                    android:nextFocusUp="@+id/btnToggleStream"
+                    android:nextFocusRight="@+id/btnSourcePlayback"
+                    android:text="Visualizer (Session 0)"
+                    android:textAllCaps="false"
+                    android:textColor="#E2E8F0" />
+
+                <Button
+                    android:id="@+id/btnSourcePlayback"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_focus_card"
+                    android:focusable="true"
+                    android:nextFocusUp="@+id/btnToggleStream"
+                    android:nextFocusLeft="@+id/btnSourceVisualizer"
+                    android:nextFocusRight="@+id/gainControlRow"
+                    android:text="Playback Capture"
+                    android:textAllCaps="false"
+                    android:textColor="#E2E8F0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cílová IP (Broadcast nebo Unicast ESP32) a UDP port"
+                android:textColor="#CBD5E1"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTargetIp"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/tv_focus_card"
+                    android:hint="255.255.255.255"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:nextFocusDown="@+id/btnSaveNetwork"
+                    android:nextFocusLeft="@+id/btnToggleStream"
+                    android:nextFocusRight="@+id/editUdpPort"
+                    android:paddingHorizontal="14dp"
+                    android:singleLine="true"
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
+
+                <EditText
+                    android:id="@+id/editUdpPort"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_focus_card"
+                    android:hint="11988"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:nextFocusDown="@+id/btnSaveNetwork"
+                    android:nextFocusLeft="@+id/editTargetIp"
+                    android:paddingHorizontal="14dp"
+                    android:singleLine="true"
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSaveNetwork"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/tv_focus_card"
+                android:focusable="true"
+                android:nextFocusDown="@+id/gainControlRow"
+                android:nextFocusUp="@+id/editTargetIp"
+                android:text="Uložit cílovou IP a UDP port"
+                android:textAllCaps="false"
+                android:textColor="#E2E8F0" />
+
+            <LinearLayout
+                android:id="@+id/gainControlRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/tv_focus_card"
+                android:focusable="true"
+                android:nextFocusDown="@+id/btnProtocolToggle"
+                android:nextFocusUp="@+id/btnSaveNetwork"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Gain / Citlivost (D-Pad ◄ ►)"
+                        android:textColor="#E2E8F0" />
+
+                    <TextView
+                        android:id="@+id/txtGainValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.30x"
+                        android:textColor="#38BDF8"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/gainProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="10dp"
+                    android:max="100" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnProtocolToggle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/tv_focus_card"
+                android:focusable="true"
+                android:nextFocusDown="@+id/btnAutostartToggle"
+                android:nextFocusUp="@+id/gainControlRow"
+                android:text="Protokol: WLED v2 (00002 · 44 B)"
+                android:textAllCaps="false"
+                android:textColor="#E2E8F0" />
+
+            <Button
+                android:id="@+id/btnAutostartToggle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/tv_focus_card"
+                android:focusable="true"
+                android:nextFocusUp="@+id/btnProtocolToggle"
+                android:text="Autostart po zapnutí TV: Zapnuto"
+                android:textAllCaps="false"
+                android:textColor="#E2E8F0" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
